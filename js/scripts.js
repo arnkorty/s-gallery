@@ -137,7 +137,8 @@
                 var index = that.current + 1;
                 // startImg.find('.img-index').html(index + ' sur ' + that.count);
 
-                $this.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                $this.one('oanimationend msAnimationEnd animationend', function(e) {
+                  console.log(e)
                     startImg.addClass('fadeInScaleUp').removeClass('fadeOut');
                     that.bigItemsList.css('pointer-events', 'auto');
                     that.changeHeight(600);
@@ -311,13 +312,14 @@
 
             //hide image description while it is resizing
             currentImg.find('.img-caption').css('opacity', '0');
+            //console.log(this.bigItemsList())
             currentImg.children('img').andSelf().animate({
                 'height'     : height,
                 'width'      : width ,
                 'left'       : left  + 'px',
                 'top'        : top  + 'px',
             }, wait * 1000, function(){
-                    $(this).removeClass('fadeInScaleUp').removeAttr('style');
+                   $(this).removeClass('fadeInScaleUp').removeAttr('style');
                     currentImg.find('.img-caption').css('opacity', '1');
             });
         }
